@@ -1,0 +1,43 @@
+* {
+  font-family: 'Cutive Mono', monospace;
+}
+
+.App {
+  text-align: center;
+  
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(8px + 2vmin);
+  color: white;
+}
+
+.navbar {
+  background-color: #39b8cc;
+}
+
+input {
+  text-align: center;
+  padding: 1vmin;
+  font-size: calc(10px + 2vmin);
+}
+
+#username {
+  width: 64vmin;
+  
+}
+
+#room-code {
+  width: 30vmin;
+}
+
+
+button {
+  width: 32.5vmin;
+  padding: 1vmin;
+  font-size: calc(10px + 2vmin);
+}
