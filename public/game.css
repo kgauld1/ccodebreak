@@ -1,0 +1,52 @@
+* {
+  font-family: 'Cutive Mono', monospace;
+}
+
+body {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; 
+}
+
+.game-screen {
+  background: lightblue;
+  height: 90vmin;
+  width: 75%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#hint {
+  position: absolute;
+  top: 90%;
+  left: 5%;
+  
+  font-size: calc(8px + 2vmin); 
+}
+
+#prompt {
+  font-size: calc(8px + 2vmin); 
+  width: 75%;
+  word-wrap: break-word;
+}
+
+#submit {
+  margin: 10px;
+  border: none;
+  font-size: calc(8px + 2vmin);
+  padding: 2vmin;
+  border-radius: 10px;
+}
+
+#answer-input {
+  text-align: center;
+  padding: 2vmin;
+  font-size: calc(10px + 2vmin);
+	border-radius: 10px;
+}

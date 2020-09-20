@@ -2,12 +2,8 @@
   font-family: 'Cutive Mono', monospace;
 }
 
-.App {
+body {
   text-align: center;
-  
-}
-
-.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -16,22 +12,26 @@
   color: white;
 }
 
-.navbar {
+.heading {
   background-color: #39b8cc;
+  padding: 20px;
 }
 
 input {
   text-align: center;
   padding: 1vmin;
   font-size: calc(10px + 2vmin);
+	border-radius: 10px;
 }
 
 #username {
-  width: 64vmin;
+  margin: 5px;
+  width: 65vmin;
   
 }
 
 #room-code {
+  margin: 5px;
   width: 30vmin;
 }
 
@@ -39,5 +39,11 @@ input {
 button {
   width: 32.5vmin;
   padding: 1vmin;
+	border-radius: 10px;
   font-size: calc(10px + 2vmin);
+  margin: 5px;
+}
+
+button:hover {
+  cursor: pointer;
 }
