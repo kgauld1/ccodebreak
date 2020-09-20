@@ -11,7 +11,7 @@ body {
 }
 
 .game-screen {
-  background: lightblue;
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
   height: 90vmin;
   width: 75%;
   position: absolute;
