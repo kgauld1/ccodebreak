@@ -1,5 +1,6 @@
 * {
   font-family: 'Cutive Mono', monospace;
+	margin:0;
 }
 
 a {
@@ -8,7 +9,8 @@ a {
 
 body {
   text-align: center;
-  background-color: #282c34;
+  /* background-color: #282c34; */
+	background-image: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,14 +21,14 @@ body {
 .menu {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 80%;
   transform: translate(-50%, -50%);
-  width: 75%;
+  width: 55%;
 }
 
 .heading {
-  background-color: #39b8cc;
-  padding: 20px;
+
+	margin-top: 30px;
 }
 
 input {
@@ -57,6 +59,9 @@ button {
 	border-radius: 10px;
   font-size: calc(10px + 2vmin);
   margin: 5px;
+	border-color: #3d99be;
+	color: white;
+	background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
 }
 
 button:hover {
@@ -143,4 +148,5 @@ button:hover {
   font-size: calc(6px + 2vmin); 
   border: none;
   padding: 5px;
+	width: 100px;
 }
