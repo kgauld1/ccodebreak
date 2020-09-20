@@ -18,8 +18,11 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 20px;
   border-radius: 10px;
+}
+
+.game {
+  padding: 20px;
 }
 
 #hint {
@@ -49,4 +52,31 @@ body {
   padding: 2vmin;
   font-size: calc(10px + 2vmin);
 	border-radius: 10px;
+}
+
+#chat {
+  background: lightgrey;
+  padding: 20px;
+  border-radius: 0 10px 10px 0;
+  max-height: 90vmin;
+}
+
+.messages {
+  min-height: 90%;
+  max-height: 90%;
+  overflow-y: scroll;
+}
+
+#message-input {
+  font-size: calc(6px + 2vmin); 
+  width: 80%;
+  margin-top: 5px;
+  padding: 5px;
+  border: none;
+}
+
+#send {  
+  font-size: calc(6px + 2vmin); 
+  border: none;
+  padding: 5px;
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/solo.css">
+  </head>
+
+  <body scroll="no" style="overflow: hidden">
+
+    <div id="game-screen" class="game-screen">
+      <div class="game">
+      <center>
+        <h3> Welcome to solo match! Here, you can work to solve the puzzles independently. The answer to your answer will serve as a hint for the next puzzle! Capitalization does not matter. Please include spaces to separate words in your answer. </h3>
+        <br><br>
+
+        <h2> Prompt: </h2>
+        <p id="prompt"></p>
+        <p id="hint"></p>
+
+        <br><br><br>
+        <input id="answer-input"> <br>
+        <button id="submit" onclick="checkAnswer()"> Submit </button>
+      </center>
+      </div>
+    </div>
+     
+
+  <script src='scripts/game.js'></script>
+  </body>
+</html>

@@ -2,27 +2,22 @@
 <html>
 	<head>
 		<title> CCodebreak </title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
    
     <script src="/socket.io/socket.io.js"></script>
-		<script src='index.js' defer></script>
+		<script src='scripts/index.js' defer></script>
 	</head>
 	<body>
     <h2 class="heading"> CCodebreak </h2>
 
-    <p>Welcome to CCodebreak, a collaborative game where you and another player will work together to solve crytograms! Enter your name and a room code if you're playing with a friend. Otherwise, join a random match, create a match, or play solo! </p>
-
     <div class="menu">
-      <input id="username" placeholder="Name" class="homeInput" type="text">
+       <p>Welcome to CCodebreak, a collaborative game where you and another player will work together to solve crytograms! Enter your name and join an online match, or play solo! </p>
+      <input autocomplete="off" id="username" placeholder="Name" class="homeInput" type="text">
       <br>
-      <input id="room-code" placeholder="Room Code" class="homeInput" type="text">
-      <a href="/game.html"> <button id="join"> Join </button> </a>
-      <br>
-      <button id="random"> Random Match </button>
-      <button id="create"> Create Match </button>
-      <br>
-      <button id="solo"> Solo Match </button>
-      <button id="how-to" onclick="openTutorial()"> How to Play </button>
+       <button type='submit' onclick="enterGame()"> Random Match </button>
+      <a href="/solo.html"> <button id="solo"> Solo Match </button> </a>
+      <br><br>
+      <img style="display: none" id="waiting" src="https://file.mockplus.com/image/2018/04/5fc8b569-d76f-4d5d-809a-6dc6968e28f7.gif">
   </div>
 
 		

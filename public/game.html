@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="game.css">
+    <link rel="stylesheet" href="css/game.css">
+    
   </head>
 
   <body scroll="no" style="overflow: hidden">
+
     <div id="game-screen" class="game-screen">
+      <div class="game">
       <center>
-        <p> Work together to solve the puzzle! The answer to your answer will serve as a hint for the next puzzle! Capitalization does not matter. Please include spaces to separate words in your answer. </p>
-        <br><br>
+        <h3> Work together to solve the puzzle! The answer to your answer will serve as a hint for the next puzzle! Capitalization does not matter. Please include spaces to separate words in your answer. </h3>
+        <br><br><br>
 
         <h2> Prompt: </h2>
         <p id="prompt"></p>
@@ -17,11 +20,22 @@
         <br><br><br>
         <input id="answer-input"> <br>
         <button id="submit" onclick="checkAnswer()"> Submit </button>
-
-        <div id="chat"></div>
       </center>
-    </div>
+      </div>
+      
+      <div id="chat" class="chat"> Chat 
+        <div class="messages" id="messages"> 
+					
+				</div>
 
-  <script src='game.js'></script>
+        <input id="message-input">
+				<button id="send" onclick="sendMessage()"> Send > </button>
+
+      </div>
+    </div>
+     
+  <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src='scripts/game.js'></script>
   </body>
 </html>

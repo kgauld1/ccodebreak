@@ -13,7 +13,6 @@ var numpeople = 2;
 
 const fetch = require('node-fetch');
 
-var names = ["Liam", "Emma", "Noah", "Olivia", "William", "Ava", "James",	"Isabella", "Oliver",	"Sophia", "Benjamin", "Charlotte", "Elijah", "Mia", "Lucas", "Amelia", "Mason",	"Harper", "Logan", "Evelyn"];
 
 module.exports = (http) => {
 	var io = require('socket.io')(http);
@@ -23,19 +22,13 @@ module.exports = (http) => {
 			this.id = id;
 			this.players = sockets;
 			this.names = [];
-			this.votes = [];
 			for (let p of sockets){
 				this.names.push([p.name, p.id]);
-				this.votes.push(null);
 			}
 			this.chat = [];
-			this.chatbotId = "happybananas";
-			this.chatbotName = names[Math.floor(Math.random()*names.length)];
-			if (Math.random() < 0.5) this.chatbotName = this.chatbotName.toLowerCase();
-			this.names.push([this.chatbotName, this.chatbotId]);
 			setTimeout(() => {
 				this.end(false);
-			}, 60000);
+			}, 600000);
 		}
 		start(){
 			io.in(this.id).emit('starting', this.names);
@@ -43,38 +36,6 @@ module.exports = (http) => {
 		sendChat(name, message){
 			io.in(this.id).emit('chat', {text: message, name: name});
 			this.chat.push({text: message, name: name});
-			if (Math.random() < 0.35){
-				let allText = "";
-				for (let c of this.chat) allText += c.text + ". ";
-				if (allText.length > 1000) allText = allText.substr(allText.length-1000);
-				let json = {
-					prompt: {
-						text: allText
-					},
-					length: 30,
-					temperature: 1.1
-				}
-				console.log('alltext', json);
-				fetch("https://api.inferkit.com/v1/models/standard/generate", {
-						method: 'POST',
-						body:    JSON.stringify(json),
-						headers: {
-							'Content-Type': 'application/json',
-							'Authorization': 'Bearer ' + process.env.key
-						}
-				}).then(resp => resp.json()).then(j => {
-					let txt = j.data.text;
-					console.log(j);
-					io.in(this.id).emit('chat', {text: txt, name: this.chatbotName});
-					this.chat.push({text: txt, name: this.chatbotName});
-				})
-			}
-		}
-		vote(socket, id){
-			let ind = this.players.indexOf(socket);
-			this.votes[ind] = id == this.chatbotId;
-			if (this.votes.every(x => x===true)) this.end(true);
-
 		}
 		end(cond){
 			io.in(this.id).emit('end', {won: cond, name: this.chatbotName});
@@ -95,7 +56,7 @@ module.exports = (http) => {
 		let name = "";
 
 		socket.on('joinRandom', (playerName) => {
-			name = cleanName(playerName);
+      name = cleanName(playerName);
 			if (!name){
 				socket.emit('error');
 				return;
@@ -117,14 +78,9 @@ module.exports = (http) => {
 
 		socket.on('chat', message => {
 			let group = stor[socket.id];
-			message = clean(message);
 			rooms[group].sendChat(name, message);
 		});
 
-		socket.on('vote', id => {
-			let group = stor[socket.id];
-			rooms[group].vote(socket, id);
-		});
 		
 		socket.on('disconnect', () => {
 			if (socket.id in stor){

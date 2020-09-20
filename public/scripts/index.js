@@ -1,3 +1,5 @@
+var socket = io();
+
 var level = 1;
 var placeholderDash = "-"
 
@@ -44,14 +46,46 @@ var problems = {
 }
 
 
-document.getElementById("prompt").innerHTML = problems[level.toString()]["prompt"];
-document.getElementById("hint").innerHTML = "Hint: " + problems[level.toString()]["hint"][Math.floor(Math.random()*(problems[level.toString()]["hint"].length))];
-document.getElementById("answer-input").placeholder = placeholderDash.repeat(problems[level.toString()]["answer"].length);
+
+async function replaceBody(file){
+	let resp = await fetch(file);
+	let text = await resp.text();
+	document.body.innerHTML = text;
+}
+
+function clean(str){
+	str = str.trim().replace(/</g, '&lt').replace(/>/g, '&gt');
+	return str;
+}
+
+function enterGame(){
+	var name = document.getElementById('username');
+	if(name.value && clean(name.value)){
+		socket.emit('joinRandom', name.value);
+	}
+}
+
+socket.on('waiting', () => {
+	document.getElementById('waiting').style.display="inline-block";
+});
+
+socket.on('starting', async (names) => {
+	console.log(names);
+	await replaceBody('/game.html');
+
+  document.getElementById("prompt").innerHTML = problems[level.toString()]["prompt"];
+  document.getElementById("hint").innerHTML = "Hint: " + problems[level.toString()]["hint"][Math.floor(Math.random()*(problems[level.toString()]["hint"].length))];
+  document.getElementById("answer-input").placeholder = placeholderDash.repeat(problems[level.toString()]["answer"].length);
+});
+
+function sendMessage(){
+  socket.emit('chat', clean(document.getElementById("message-input").value));
+}
 
 function checkAnswer(){
   if (document.getElementById("answer-input").value.toLowerCase() == problems[level.toString()]["answer"]){
     
-    if (level < 1){
+    if (level < 10){
       level++;
       document.getElementById("prompt").innerHTML = problems[level.toString()]["prompt"];
       document.getElementById("hint").innerHTML = "Hint: " + problems[level.toString()]["hint"][Math.floor(Math.random()*(problems[level.toString()]["hint"].length))];
@@ -71,13 +105,33 @@ function checkAnswer(){
 
       div.appendChild(congrats)
       div.appendChild(document.createTextNode("You solved the puzzles!"));
-
-      var exit = document.createElement('button');
+      div.appendChild(document.createElement("br"));
+      var exit = document.createElement('a');
       exit.setAttribute("href", "/");
-      var button = document.createElement('')
-      exit.appendChild(button);
       exit.innerHTML = 'Exit';
       div.appendChild(exit);
     }
   }
 }
+
+
+
+
+socket.on('chat', ({name, text}) => {
+	let html = `
+		<p><b>${name}:</b> ${text}</p>
+	`;
+	let chat = document.getElementById('chat');
+	chat.innerHTML += html;
+	let msgs = document.getElementById('messages');
+	msgs.scrollTop = msgs.scrollHeight - msgs.clientHeight;
+})
+
+socket.on('end', async ({won, name}) => {
+	await replaceBody('/winlose.html');
+	let h1 = document.getElementById('condition');
+	let h2 = document.getElementById('chatbotName');
+	if (won) h1.innerHTML = "You won!";
+	else h1.innerHTML = "You lost.";
+	h2.innerHTML = "The chatbot's name was " + name;
+})

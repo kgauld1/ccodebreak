@@ -1,0 +1,146 @@
+* {
+  font-family: 'Cutive Mono', monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(8px + 2vmin);
+  color: white;
+}
+
+.menu {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+}
+
+.heading {
+  background-color: #39b8cc;
+  padding: 20px;
+}
+
+input {
+  text-align: center;
+  padding: 1vmin;
+  font-size: calc(10px + 2vmin);
+	border-radius: 10px;
+}
+
+#username {
+  margin: 5px;
+  width: 65vmin;
+  
+}
+
+#room-code {
+  margin: 5px;
+  width: 30vmin;
+}
+
+#waiting {
+	width: 20vmin;
+}
+
+button {
+  width: 32vmin;
+  padding: 1vmin;
+	border-radius: 10px;
+  font-size: calc(10px + 2vmin);
+  margin: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+
+
+* {
+  font-family: 'Cutive Mono', monospace;
+}
+
+
+.game-screen {
+  background: lightblue;
+  height: 90vmin;
+  width: 75%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  grid-gap: 20px;
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+
+.game {
+  padding: 20px;
+}
+
+#hint {
+  position: absolute;
+  top: 90%;
+  left: 5%;
+  
+  font-size: calc(8px + 2vmin); 
+}
+
+#prompt {
+  font-size: calc(8px + 2vmin); 
+  width: 75%;
+  word-wrap: break-word;
+}
+
+#submit {
+  margin: 10px;
+  border: none;
+  font-size: calc(8px + 2vmin);
+  padding: 2vmin;
+  border-radius: 10px;
+}
+
+#answer-input {
+  text-align: center;
+  padding: 2vmin;
+  font-size: calc(10px + 2vmin);
+	border-radius: 10px;
+}
+
+#chat {
+  background: lightgrey;
+  padding: 20px;
+  border-radius: 0 10px 10px 0;
+  max-height: 90vmin;
+	overflow-y: scroll;
+}
+
+.messages {
+  /* min-height: 90%;
+  max-height: 90%; */
+  overflow-y: scroll;
+}
+
+#message-input {
+  font-size: calc(6px + 2vmin); 
+  width: 80%;
+  margin-top: 5px;
+  padding: 5px;
+  border: none;
+}
+
+#send {  
+  font-size: calc(6px + 2vmin); 
+  border: none;
+  padding: 5px;
+}

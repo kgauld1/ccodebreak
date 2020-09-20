@@ -1,0 +1,24 @@
+<div id="game-screen" class="game-screen">
+  <div class="game">
+    <center>
+      <h3> Work together to solve the puzzle! The answer to your answer will serve as a hint for the next puzzle! Capitalization does not matter. Please include spaces to separate words in your answer. </h3>
+      <br><br><br>
+
+      <h2> Prompt: </h2>
+      <p id="prompt"></p>
+      <p id="hint"></p>
+
+      <br><br><br>
+      <input id="answer-input"> <br>
+      <button id="submit" onclick="checkAnswer()"> Submit </button>
+    </center>
+  </div>
+    
+  <div id="chat" class="chat"> Chat 
+    <div class="messages" id="messages"> </div>
+
+    <input id="message-input">
+    <button id="send" onclick="sendMessage()"> > </button>
+    <input autocomplete="off" id='text' type='text' onkeyup="sendChat(this)">
+  </div>
+</div>
